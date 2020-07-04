@@ -1,4 +1,4 @@
-package users_db
+package mysql_db
 
 import (
 	"database/sql"
