@@ -1,7 +1,7 @@
 package users
 
 import (
-	"github.com/manishsinghbisht/greenleaf-api/datasources/mysql/users_db"
+	"github.com/manishsinghbisht/greenleaf-api/datasources/mysql"
 	"fmt"
 	"strings"
 	"github.com/manishsinghbisht/utils-go/mysql_utils"
@@ -21,7 +21,9 @@ const (
 )
 
 func (user *User) Get() rest_errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryGetUser)
+
+	stmt, err := mysql_db.Client.Prepare(queryGetUser)
+
 	if err != nil {
 		logger.Error("error when trying to prepare get user statement", err)
 		return rest_errors.NewInternalServerError("error when trying to get user", errors.New("database error"))
@@ -38,7 +40,8 @@ func (user *User) Get() rest_errors.RestErr {
 }
 
 func (user *User) Save() rest_errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryInsertUser)
+
+	stmt, err := mysql_db.Client.Prepare(queryInsertUser)
 	if err != nil {
 		logger.Error("error when trying to prepare save user statement", err)
 		return rest_errors.NewInternalServerError("error when trying to save user", errors.New("database error"))
@@ -62,7 +65,7 @@ func (user *User) Save() rest_errors.RestErr {
 }
 
 func (user *User) Update() rest_errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryUpdateUser)
+	stmt, err := mysql_db.Client.Prepare(queryUpdateUser)
 	if err != nil {
 		logger.Error("error when trying to prepare update user statement", err)
 		return rest_errors.NewInternalServerError("error when trying to update user", errors.New("database error"))
@@ -78,7 +81,7 @@ func (user *User) Update() rest_errors.RestErr {
 }
 
 func (user *User) Delete() rest_errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryDeleteUser)
+	stmt, err := mysql_db.Client.Prepare(queryDeleteUser)
 	if err != nil {
 		logger.Error("error when trying to prepare delete user statement", err)
 		return rest_errors.NewInternalServerError("error when trying to update user", errors.New("database error"))
@@ -93,7 +96,7 @@ func (user *User) Delete() rest_errors.RestErr {
 }
 
 func (user *User) FindByStatus(status string) ([]User, rest_errors.RestErr) {
-	stmt, err := users_db.Client.Prepare(queryFindByStatus)
+	stmt, err := mysql_db.Client.Prepare(queryFindByStatus)
 	if err != nil {
 		logger.Error("error when trying to prepare find users by status statement", err)
 		return nil, rest_errors.NewInternalServerError("error when trying to get user", errors.New("database error"))
@@ -123,7 +126,7 @@ func (user *User) FindByStatus(status string) ([]User, rest_errors.RestErr) {
 }
 
 func (user *User) FindByEmailAndPassword() rest_errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryFindByEmailAndPassword)
+	stmt, err := mysql_db.Client.Prepare(queryFindByEmailAndPassword)
 	if err != nil {
 		logger.Error("error when trying to prepare get user by email and password statement", err)
 		return rest_errors.NewInternalServerError("error when trying to find user", errors.New("database error"))
