@@ -2,17 +2,17 @@ package app
 
 import (
 	"github.com/manishsinghbisht/greenleaf-api/controllers/ping"
-	"github.com/manishsinghbisht/greenleaf-api/controllers/users"
+	"github.com/manishsinghbisht/greenleaf-api/controllers/user"
 )
 
 func mapUrls() {
 	router.GET("/ping", ping.Ping)
 
-	router.POST("/users", users.Create)
-	router.GET("/users/:user_id", users.Get)
-	router.PUT("/users/:user_id", users.Update)
-	router.PATCH("/users/:user_id", users.Update)
-	router.DELETE("/users/:user_id", users.Delete)
-	router.GET("/internal/users/search", users.Search)
-	router.POST("/users/login", users.Login)
+	router.POST("/users", user.Create)
+	router.GET("/users/:user_id", user.Get)
+	router.PUT("/users/:user_id", user.Update)
+	router.PATCH("/users/:user_id", user.Update)
+	router.DELETE("/users/:user_id", user.Delete)
+	router.GET("/internal/users/search", user.Search)
+	router.POST("/users/login", user.Login)
 }

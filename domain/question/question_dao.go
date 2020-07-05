@@ -3,7 +3,7 @@ package question
 import (
 	"errors"
 	"fmt"
-	"github.com/manishsinghbisht/greenleaf-api/datasources/mysql"
+	"github.com/manishsinghbisht/greenleaf-api/datasources"
 	"github.com/manishsinghbisht/utils-go/logger"
 	"github.com/manishsinghbisht/utils-go/rest_errors"
 )
